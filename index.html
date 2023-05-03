@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solar Load Profile Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="logo-container">
+      <img src="/images/ecity-logo.png" alt="Electric City Energy Logo">
+    </div>
+    <div class="container">
+      <h1>Solar Load Profile Calculator</h1>
+      <!-- Main Table -->
+      <div class="table-responsive">
+        <table class="table table-striped responsive-table" id="loadTable">
+          <thead>
+            <tr>
+              <th>Load description</th>
+              <th>Quantity</th>
+              <th>Wattage (W)</th>
+              <th>Total wattage (W)</th>
+              <th>Run-time (hrs)</th>
+              <th>Watt-Hour (Wh)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- First Row -->
+            <tr>
+              <td data-label="Load">
+                <select id="loadSelect" data-label="Load">
+                  <option value="TV">TV</option>
+                  <option value="Lighting Points">Lighting Points</option>
+                  <option value="Water Dispenser">Water Dispenser</option>
+                  <option value="Coffee Maker">Coffee Maker</option>
+                  <option value="Microwave">Microwave</option>
+                  <option value="Desktop computer">Desktop computer</option>
+                  <option value="Sandwich Maker">Sandwich Maker</option>
+                  <option value="Big Fridge">Big Fridge</option>
+                  <option value="Small Fridge">Small Fridge</option>
+                  <option value="Toaster">Toaster</option>
+                  <option value="Ice Maker">Ice Maker</option>
+                  <option value="Blender">Blender</option>
+                  <option value="Printer">Printer</option>
+                  <option value="Deep Freezer">Deep Freezer</option>
+                  <option value="Electric Kettle">Electric Kettle</option>
+                  <option value="CCTV">CCTV</option>
+                  <option value="Fan">Fan</option>
+                  <option value="Projector">Projector</option>
+                  <option value="3Hp Air Condition">3Hp Air Condition</option>
+                  <option value="2Hp Air Condition">2Hp Air Condition</option>
+                  <option value="1.5Hp Air Condition">1.5Hp Air Condition</option>
+                  <option value="1Hp Air Condition">1Hp Air Condition</option>
+                </select>
+              </td>
+              <td data-label="Quantity"><input type="number" id="quantity" value="1" min="1" data-label="Quantity"></td>
+              <td data-label="Wattage (W)"><input type="number" id="wattage" class="non-editable-input" value="65" readonly data-label="Wattage (W)"></td>
+              <td data-label="Total Wattage"><input type="number" id="totalWattage" class="non-editable-input" value="65" readonly data-label="Total Wattage (W)"></td>
+              <td data-label="Run Time (hrs)"><input type="number" id="runtime" value="1" min="0" data-label="Run-time (hrs)"></td>
+              <td data-label="Watt-Hour (Wh)"><input type="number" id="wattHour" value="65" class="non-editable-input" readonly data-label="Watt-Hour (Wh)"></td>
+              <td><button class="removeItemBtn" style="display:none">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button id="addItemBtn">Add Equipment</button>
+      <button id="calculateBtn">Calculate</button>
+      <div class="result" id="result">Total Wattage: -, Total Watt-Hour: -</div>
+
+      <div class="tables-container">
+        <!-- Table 2 -->
+        <div class="table-responsive table-2">
+          <table class="table table-striped responsive-table table-col-1" id="table2">
+            <thead>
+              <tr>
+                <th colspan="2">Load Estimate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total Estimated Load (W)</td>
+                <td id="table2-wattage" data-label="Total Estimated Load (W)"></td>
+              </tr>
+              <tr>
+                <td>Total Watt-Hour (Wh)</td>
+                <td id="table2-wattHour" data-label="Total Watt-Hour (Wh)"></td>
+              </tr>
+              <tr>
+                <td>Estimated peak sunshine (hrs)</td>
+                <td id="peak-sunshine" data-label="Estimated peak sunshine (hrs)">6</td>
+              </tr>
+              <tr>
+                <td>Level of Tolerance (%)</td>
+                <td data-label="Level of Tolerance (%)">30</td>
+              </tr>
+              <tr>
+                <td>Proposed Panel Size (W)</td>
+                <td id="panel-size" data-label="Proposed Panel Size (W)">450</td>
+              </tr>
+              <tr>
+                <td>Battery Bank Power (Wh)</td>
+                <td id="batteryBankPower" data-label="Battery Bank Power (Wh)"></td>
+              </tr>
+              <tr>
+                <td>Proposed Lead Acid Battery</td>
+                <td id="proposed-la-battery" data-label="Proposed Lead Acid Battery">200</td>
+              </tr>
+              <tr>
+                <td>Battery Voltage</td>
+                <td id="battery-voltage" data-label="Battery Voltage">12</td>
+              </tr>
+              <tr>
+                <td>Power Factor</td>
+                <td id="power-factor-2" data-label="Power Factor">0.8</td>
+              </tr>
+              <tr>
+                <td>Total Power to be Generated</td>
+                <td id="totalPowerGenerated" data-label="Total Power to be Generated"></td>
+              </tr>
+              <tr>
+                <td>Desired Backup Time</td>
+                <td id="desired-backup-time" data-label="Desired Backup Time">12</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Table 3 -->
+        <div class="table-responsive">
+          <table class="table table-striped responsive-table table-col-1" id="table3">
+            <thead>
+              <tr>
+                <th colspan="2">Backup Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Battery Voltage (Vdc)</td>
+                <td id="battery-voltage-vdc" data-label="Battery Voltage (Vdc)">12</td>
+              </tr>
+              <tr>
+                <td>Ampere-hour (AH)</td>
+                <td id="ampere-hour">200</td>
+              </tr>
+              <tr>
+                <td>Power Factor</td>
+                <td id="power-factor-3">0.8</td>
+              </tr>
+              <tr>
+                <td>Load (W)</td>
+                <td id="loadW"></td>
+              </tr>
+              <tr>
+                <td>Number of batteries</td>
+                <td id="numBatteries">45</td>
+              </tr>
+              <tr>
+                <td>Backup Time (H)</td>
+                <td id="backupTime"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Table 4 -->
+        <div class="table-responsive">
+          <table class="table table-striped responsive-table table-col-1" id="table4">
+            <thead>
+              <tr>
+                <th colspan="3">Required Equipment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Inverter Capacity (KVA)</td>
+                <td id="inverterCapacity"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>No. of Solar Panels</td>
+                <td id="numSolarPanels"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>No. of Batteries</td>
+                <td class="mobile-hidden">Lithium-ion</td>
+                <td class="mobile-hidden">Lead Acid</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td id="lithiumIon" data-label="Lithium-ion"></td>
+                <td id="leadAcid" data-label="Lead Acid"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>

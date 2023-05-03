@@ -1,0 +1,243 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'EMprint';
+  src: url('fonts/EMprint-Regular.woff2') format('woff2'),
+      url('fonts/EMprint-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url('fonts/GothamRounded-Bold.woff2') format('woff2'),
+      url('fonts/GothamRounded-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  font-family: 'EMprint', sans-serif;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 300px;
+  height: auto;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Gotham Rounded', sans-serif;
+}
+
+.non-editable-input {
+  border: none;
+  background-color: inherit;
+  pointer-events: none;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+table td input, table td select {
+  padding: 0.1rem;
+  width: calc(70% - 0.5rem); /* Subtracting 0.5rem to account for the padding */
+}
+
+th {
+  font-family: 'Gotham Rounded', sans-serif;
+}
+
+.tables-container table tr td:first-child {
+  font-size: 0.8rem;
+  text-align: left;
+  width: 70%;
+}
+
+td {
+  font-family: 'EMprint', sans-serif;
+  font-size: 0.8rem;
+}
+
+table th,
+table td {
+  border: 0px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+#addItemBtn {
+  margin-top: 0.5rem;
+  font-family: 'Gotham Rounded', sans-serif;
+}
+
+#calculateBtn {
+  margin-top: 1rem;
+  font-family: 'Gotham Rounded', sans-serif;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background-color: #0B1E49;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #FFB100;
+  transition: 300ms ease-in-out;
+}
+
+.result {
+  background-color: #ddd;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.responsive-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.responsive-table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.tables-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.table-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 0 auto;
+}
+
+
+
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+  .non-editable-input {
+    border: none;
+    background-color: inherit;
+    pointer-events: none;
+    text-align: left;
+  }
+
+  #table2 {
+    background-color: #e2eafc;
+    padding: 10px;
+  }
+
+  #table3 {
+    background-color: #e2eafc;
+    padding: 10px;
+  }
+
+  #table4 {
+    background-color: #e2eafc;
+    padding: 10px;
+  }
+  
+  .table thead th {
+    display: none;
+  }
+
+  .tables-container {
+    display: grid;
+    justify-content: space-around;
+  }
+
+  td[data-label]::before {
+    content: attr(data-label);
+    display: inline-block;
+  }
+
+  table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    grid-gap: 0.5rem;
+    text-align: left;
+  }
+
+  table tr {
+    display: contents;
+  }
+
+  table th,
+  table td {
+    display: grid;
+    padding: 0.5rem;
+    text-align: left;
+    grid-gap: 0.5rem;
+    padding: 0.35rem;
+    font-size: 1.2rem;
+  }
+
+  table td:before {
+    content: attr(data-label);
+    font-size: 1rem;
+  }
+
+  table td input, table td select {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+
+  body {
+    font-size: 1.2rem;
+  }
+
+  .table-col-1 tbody tr td:first-child {
+    display: none;
+  }
+}
+
