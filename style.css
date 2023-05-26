@@ -32,15 +32,71 @@ body {
   font-family: 'EMprint', sans-serif;
 }
 
-.logo-container {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+/* Styles for the fixed header */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo-container img {
-  width: 300px;
-  height: auto;
+.fixed-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 18em;
+}
+
+.fixed-header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.fixed-header .logo img {
+  height: 30px; /* Adjust the height as needed */
+}
+
+.fixed-header .mobile-logo {
+  display: none; /* Hide the mobile logo by default */
+}
+
+.fixed-header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.fixed-header ul li {
+  margin-right: 10px;
+}
+
+.fixed-header ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.fixed-header ul li a:hover {
+  color: #000;
+}
+
+.guide-container {
+  max-width: 1200px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-top: 100px;
+}
+
+.guide-container ul, p {
+  max-width: 700px;
+}
+
+.guide-container h2 {
+  margin-top: 50px;
 }
 
 .container {
@@ -51,8 +107,12 @@ body {
   text-align: center;
 }
 
-h1 {
+.container h2 {
   text-align: center;
+}
+
+h1, h2 {
+  text-align: left;
   margin-bottom: 2rem;
   font-family: 'Gotham Rounded', sans-serif;
 }
@@ -161,6 +221,30 @@ button:hover {
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
+  .fixed-header nav {
+    padding: 1em 10px; /* Adjust the padding as needed */
+  }
+
+  .fixed-header .logo {
+    justify-content: flex-start; /* Align the logo to the left */
+  }
+
+  .fixed-header ul {
+    justify-content: flex-end; /* Align the home link to the right */
+  }
+
+  .fixed-header ul li {
+    margin-left: 10px; /* Add spacing between the logo and home link */
+  }
+
+  .fixed-header .desktop-logo {
+    display: none; /* Hide the desktop logo on mobile devices */
+  }
+
+  .fixed-header .mobile-logo {
+    display: flex; /* Show the mobile logo on mobile devices */
+  }
+
   .non-editable-input {
     border: none;
     background-color: inherit;
@@ -226,6 +310,10 @@ button:hover {
   table td input, table td select {
     display: inline-block;
     width: 100%;
+  }
+
+  .mobile-visible {
+    display: table-cell !important;
   }
 
   .mobile-hidden {
