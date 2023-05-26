@@ -11,12 +11,58 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="logo-container">
-      <img src="/images/ecity-logo.png" alt="Electric City Energy Logo">
+    <header class="fixed-header">
+      <nav>
+        <div class="logo">
+          <a href="https://ecityenergy.com/"><img src="/images/ecity-logo.png" class="desktop-logo" alt="Electric City Energy Logo"></a>
+          <a href="https://ecityenergy.com/"><img src="/images/ecity-logo-m.png" class="mobile-logo" alt="Electric City Energy Logo"></a>
+        </div>
+        <ul>
+          <li><a href="https://ecityenergy.com/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="guide-container">
+      <h1>Solar System Sizing Calculator - User Guide</h1>
+      <p>Welcome to the Solar System Sizing Calculator. This guide will walk you through how to use this application to calculate the optimal solar energy system for your needs. Let's get started:</p>
+
+      <h2>Step 1: Enter Load Details</h2>
+      <p>Enter details about your electrical appliances in the first table. For each appliance, you need to provide:</p>
+      <ul>
+        <li><strong>Equipment/Electronic Type:</strong> This could be any electrical device you use, such as a refrigerator, fan, or light.</li>
+        <li><strong>Quantity:</strong> The number of such appliances.</li>
+        <li><strong>Runtime (Hrs/day):</strong> The average number of hours per day the appliance is used.</li>
+      </ul>
+      <p>You can add more equipment/electronics by clicking the "Add Equipment" button if you have more than one type of appliance.</p>
+
+      <h2>Step 2: Review Auto-calculated Values</h2>
+      <p>As you enter the values, the application automatically calculates the <strong>Total Wattage (W)</strong> and <strong>Watt-Hours (Wh)</strong> for each appliance. These fields are not editable.</p>
+
+      <h2>Step 3: Calculate</h2>
+      <p>Once you have entered all the necessary data, click the "Calculate" button.</p>
+
+      <h2>Step 4: Review Results</h2>
+      <p>The application calculates and displays the following:</p>
+      <ul>
+        <li><strong>Total Wattage (W)</strong> and <strong>Total Watt-Hour (Wh)</strong>: The sum of all the wattages and watt-hours of your electrical loads.</li>
+        <li><strong>Battery Bank Power (Wh)</strong>: The total power that your battery bank should be able to store.</li>
+        <li><strong>Inverter Capacity (kW)</strong>: The capacity of the inverter required for your needs.</li>
+        <li><strong>Number of Solar Panels</strong>: The number of solar panels you will need to generate the required power.</li>
+        <li><strong>Backup Time (Hrs)</strong>: The duration for which your system can provide power with the current setup.</li>
+        <li><strong>Number of Lead Acid Batteries</strong>: The number of lead-acid batteries required for the desired backup time.</li>
+        <li><strong>Number of Lithium-Ion Batteries</strong>: The number of lithium-ion batteries required for the desired backup time. Lithium-Ion batteries are more efficient, and you generally need fewer of them compared to lead-acid batteries.</li>
+      </ul>
+      <p>Please note that the results are automatically updated whenever you change any value in the table.</p>
+
+      <p>Remember, these are only estimates, and the actual requirements may vary based on various factors including local weather conditions, actual power usage, battery and inverter efficiency, and others. Always consult with our solar installation professionals before making any purchasing decisions.</p>
+
+      <p>We hope this tool helps you in estimating your solar energy requirements. Enjoy your journey towards sustainable and renewable energy!</p>
     </div>
+
+    <!-- Main Table -->
     <div class="container">
-      <h1>Solar Load Profile Calculator</h1>
-      <!-- Main Table -->
+      <h2>Solar System Sizing Calculator</h2>
       <div class="table-responsive">
         <table class="table table-striped responsive-table" id="loadTable">
           <thead>
@@ -79,7 +125,7 @@
           <table class="table table-striped responsive-table table-col-1" id="table2">
             <thead>
               <tr>
-                <th colspan="2">Load Estimate</th>
+                <th colspan="2" class="mobile-visible">Load Estimate</th>
               </tr>
             </thead>
             <tbody>
@@ -135,7 +181,7 @@
           <table class="table table-striped responsive-table table-col-1" id="table3">
             <thead>
               <tr>
-                <th colspan="2">Backup Time</th>
+                <th colspan="2" class="mobile-visible">Backup Time</th>
               </tr>
             </thead>
             <tbody>
@@ -145,23 +191,23 @@
               </tr>
               <tr>
                 <td>Ampere-hour (AH)</td>
-                <td id="ampere-hour">200</td>
+                <td id="ampere-hour" data-label="Ampere-hour">200</td>
               </tr>
               <tr>
                 <td>Power Factor</td>
-                <td id="power-factor-3">0.8</td>
+                <td id="power-factor-3" data-label="Power Factor">0.8</td>
               </tr>
               <tr>
                 <td>Load (W)</td>
-                <td id="loadW"></td>
+                <td id="loadW" data-label="Load"></td>
               </tr>
               <tr>
                 <td>Number of batteries</td>
-                <td id="numBatteries">45</td>
+                <td id="numBatteries" data-label="Number of batteries">45</td>
               </tr>
               <tr>
                 <td>Backup Time (H)</td>
-                <td id="backupTime"></td>
+                <td id="backupTime" data-label="Backup Time"></td>
               </tr>
             </tbody>
           </table>
@@ -171,18 +217,18 @@
           <table class="table table-striped responsive-table table-col-1" id="table4">
             <thead>
               <tr>
-                <th colspan="3">Required Equipment</th>
+                <th colspan="3" class="mobile-visible">Required Equipment</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Inverter Capacity (KVA)</td>
-                <td id="inverterCapacity"></td>
+                <td id="inverterCapacity" data-label="Inverter Capacity"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>No. of Solar Panels</td>
-                <td id="numSolarPanels"></td>
+                <td id="numSolarPanels" data-label="No. of Solar Panels"></td>
                 <td></td>
               </tr>
               <tr>
@@ -191,16 +237,22 @@
                 <td class="mobile-hidden">Lead Acid</td>
               </tr>
               <tr>
-                <td></td>
+                <td data-label="No. of Batteries"></td>
                 <td id="lithiumIon" data-label="Lithium-ion"></td>
                 <td id="leadAcid" data-label="Lead Acid"></td>
               </tr>
             </tbody>
           </table>
+          
         </div>
+        <div class="appreciation">
+          <p>Thank you for using our Solar System Sizing Calculator to estimate your solar energy requirements. We appreciate your commitment towards sustainable and renewable energy solutions. To proceed further and explore our payment plan options, we kindly encourage you to fill out the form below. Your registration will help us understand your needs better and provide you with personalized assistance. We look forward to assisting you in your solar energy journey.</p>
+        </div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeEyuCCWNe46cwVM0MURwD5qcALc-7W7vkfPmVP5fpEg_wRlQ/viewform?embedded=true" width="640" height="3239" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       </div>
-
+      
     </div>
+    
       <script src="script.js"></script>
     </div>
   </body>
