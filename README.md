@@ -1,5 +1,3 @@
-Certainly! Here is the updated README.md content without the open-source reference and the License section:
-
 # Solar System Sizing Calculator
 
 A web application designed to calculate and recommend the optimal solar energy system configuration based on user input for electrical loads, battery storage, inverter capacity, solar panels, and backup time. This project is implemented using HTML, CSS, and JavaScript.
